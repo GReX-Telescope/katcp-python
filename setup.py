@@ -57,7 +57,6 @@ setup(
     install_requires=[
         "ply",
         "future",
-        "futures; python_version<'3'",
         "tornado",
     ],
     zip_safe=False,
