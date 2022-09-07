@@ -42,6 +42,6 @@ known_first_party = [
     'katdeploy', 'katgui', 'katlogger', 'katmisc', 'katnodeman', 'katobs', 'katopc',
     'katpoint', 'katportal', 'katportalclient', 'katproxy', 'katscripts', 'katsdisp',
     'katsdpcatalogues', 'katsdpcontroller', 'katsdpscripts', 'katsdpservices',
-    'katsdptelstate', 'katsim', 'katuilib', 'katusescripts', 'katversion', 'mkat_tango', 'mkatstore',
+    'katsdptelstate', 'katsim', 'katuilib', 'katusescripts', 'mkat_tango', 'mkatstore',
     'nosekatreport', 'pylibmodbus', 'spead', 'tango_simlib'
     ]
