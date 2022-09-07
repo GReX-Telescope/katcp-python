@@ -32,6 +32,7 @@ setup(
     packages=find_packages(),
     url="https://github.com/ska-sa/katcp-python",
     download_url="https://pypi.org/project/katcp/",
+    version="0.9.1",
     license="BSD",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
