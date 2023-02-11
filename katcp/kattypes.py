@@ -19,12 +19,16 @@ import struct
 
 from builtins import object
 from functools import partial, update_wrapper, wraps
+try:
+    from inspect import getfullargspec as get_args
+except ImportError:
+    from inspect import getargspec as get_args
 
 import future
 
 from tornado import gen
 
-from .compat import is_bytes, is_text
+from .compat import is_bytes, is_text, ensure_native_str
 from .core import (DEFAULT_KATCP_MAJOR, MS_TO_SEC_FAC, SEC_TO_MS_FAC,
                    SEC_TS_KATCP_MAJOR, FailReply, Message, convert_method_name)
 
@@ -420,6 +424,7 @@ class Timestamp(KatcpType):
         try:
             decoded = float(value)
         except:
+            value = ensure_native_str(value)
             raise ValueError("Could not parse value '%s' as timestamp." %
                              value)
         if major < SEC_TS_KATCP_MAJOR:
@@ -710,7 +715,7 @@ def request(*types, **options):
 
         if all_argnames is None:
             # We must be on the inside. Introspect the parameter names.
-            all_argnames = inspect.getargspec(handler)[0]
+            all_argnames = get_args(handler)[0]
 
         params_start = 1        # Skip 'self' parameter
         if has_req:         # Skip 'req' parameter
@@ -889,7 +894,7 @@ def return_reply(*types, **options):
             # We are on the inside.
             # We must preserve the original function parameter names for the
             # request decorator
-            raw_handler._orig_argnames = inspect.getargspec(handler)[0]
+            raw_handler._orig_argnames = get_args(handler)[0]
 
         return raw_handler
 
